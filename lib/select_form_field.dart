@@ -545,7 +545,7 @@ class _SelectFormFieldState extends FormFieldState<String> {
   }
 
   Future<void> _showSelectFormFieldDialog() async {
-    Map<String, dynamic> lvPicked = await showDialog<dynamic>(
+    Map<String, dynamic>? lvPicked = await showDialog<dynamic>(
       context: context,
       builder: (BuildContext context) {
         return ItemPickerDialog(
@@ -557,6 +557,8 @@ class _SelectFormFieldState extends FormFieldState<String> {
         );
       },
     );
+
+    if (lvPicked == null) return;
 
     if (lvPicked is Map<String, dynamic>) {
       _labelController.text = lvPicked['label'];
